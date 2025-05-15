@@ -35,7 +35,12 @@ const TagManager = ({ open, onClose }) => {
       setNewTagName('');
       setError('');
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create tag');
+      console.error('Error in TagManager:', err);
+      const errorMessage = err.response?.data?.message || 
+                          err.response?.data?.error ||
+                          err.message ||
+                          'Failed to create tag';
+      setError(errorMessage);
     }
   };
 

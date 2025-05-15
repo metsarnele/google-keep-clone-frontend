@@ -39,10 +39,13 @@ export const TagProvider = ({ children }) => {
   const createTag = async (name) => {
     try {
       setLoading(true);
-      const result = await TagService.createTag(name);
-      setTags([...tags, result.tag]);
-      return result;
+      const newTag = await TagService.createTag(name);
+      // Handle both possible API response structures
+      const tagToAdd = newTag.tag || newTag;
+      setTags([...tags, tagToAdd]);
+      return newTag;
     } catch (err) {
+      console.error('Error creating tag:', err);
       setError(err.response?.data?.message || 'Failed to create tag');
       throw err;
     } finally {

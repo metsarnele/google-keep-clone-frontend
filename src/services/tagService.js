@@ -15,8 +15,10 @@ const TagService = {
   createTag: async (name) => {
     try {
       const response = await api.post('/tags', { name });
+      console.log('Tag creation response:', response.data);
       return response.data;
     } catch (error) {
+      console.error('Tag creation error:', error.response?.data || error.message);
       throw error;
     }
   },

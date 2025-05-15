@@ -9,8 +9,7 @@ import {
   Divider
 } from '@mui/material';
 import { 
-  LightbulbOutlined, 
-  LabelOutlined
+  LightbulbOutlined
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTags } from '../../context/TagContext';
@@ -55,11 +54,6 @@ const Sidebar = ({ open, drawerWidth }) => {
       <Divider />
       
       <List>
-        <ListItem>
-          <ListItemIcon><LabelOutlined /></ListItemIcon>
-          <ListItemText primary="Labels" />
-        </ListItem>
-        
         {tags.map((tag) => (
           <ListItem 
             button 
