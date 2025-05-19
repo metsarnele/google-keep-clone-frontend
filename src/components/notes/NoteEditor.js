@@ -57,16 +57,20 @@ const NoteEditor = ({ open, note, onClose, onSave }) => {
   }, [note, tags]);
 
   const handleSave = () => {
+    // Trim input values
+    const trimmedTitle = title.trim();
+    const trimmedContent = content.trim();
+    
     // Don't save empty notes
-    if (!title.trim() && !content.trim()) {
+    if (!trimmedTitle && !trimmedContent) {
       onClose();
       return;
     }
 
     const updatedNote = {
       ...(note || {}),
-      title,
-      content,
+      title: trimmedTitle,
+      content: trimmedContent,
       tags: selectedTags.map(tag => tag.id),
       reminder: reminder ? new Date(reminder).toISOString() : null,
       pinned

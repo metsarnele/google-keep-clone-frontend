@@ -14,9 +14,19 @@ const Login = () => {
     e.preventDefault();
     setFormError('');
     clearError();
+    
+    // Trim input values
+    const trimmedUsername = username.trim();
+    const trimmedPassword = password.trim();
 
-    if (!username || !password) {
+    if (!trimmedUsername || !trimmedPassword) {
       setFormError('Please enter both username and password');
+      return;
+    }
+    
+    // Check if fields are just whitespace
+    if (trimmedUsername === '' || trimmedPassword === '') {
+      setFormError('Username and password cannot be empty or just whitespace');
       return;
     }
 

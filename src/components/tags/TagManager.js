@@ -25,13 +25,16 @@ const TagManager = ({ open, onClose }) => {
   const [error, setError] = useState('');
 
   const handleCreateTag = async () => {
-    if (!newTagName.trim()) {
+    // Trim input value
+    const trimmedTagName = newTagName.trim();
+    
+    if (!trimmedTagName) {
       setError('Tag name cannot be empty');
       return;
     }
 
     try {
-      await createTag(newTagName);
+      await createTag(trimmedTagName);
       setNewTagName('');
       setError('');
     } catch (err) {
@@ -55,13 +58,16 @@ const TagManager = ({ open, onClose }) => {
   };
 
   const handleSaveEdit = async () => {
-    if (!editTagName.trim()) {
+    // Trim input value
+    const trimmedTagName = editTagName.trim();
+    
+    if (!trimmedTagName) {
       setError('Tag name cannot be empty');
       return;
     }
 
     try {
-      await updateTag(editingTag.id, editTagName);
+      await updateTag(editingTag.id, trimmedTagName);
       setEditingTag(null);
       setEditTagName('');
       setError('');

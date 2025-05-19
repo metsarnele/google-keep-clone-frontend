@@ -15,10 +15,21 @@ const Register = () => {
     e.preventDefault();
     setFormError('');
     clearError();
+    
+    // Trim input values
+    const trimmedUsername = username.trim();
+    const trimmedPassword = password.trim();
+    const trimmedConfirmPassword = confirmPassword.trim();
 
     // Validation
-    if (!username || !password || !confirmPassword) {
+    if (!trimmedUsername || !trimmedPassword || !trimmedConfirmPassword) {
       setFormError('Please fill in all fields');
+      return;
+    }
+    
+    // Check if fields are just whitespace
+    if (trimmedUsername === '' || trimmedPassword === '') {
+      setFormError('Username and password cannot be empty or just whitespace');
       return;
     }
 
